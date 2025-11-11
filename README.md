@@ -218,14 +218,6 @@ Update the MongoDB connection string in `index.js`
 - Check that the `public` folder is being served correctly
 - Clear your browser cache
 
-## License 📄
-
-ISC
-
-## Support 💬
-
-For questions or issues, contact: lostandfound@university.edu
-
 ---
 
 Built with ❤️ for university students
