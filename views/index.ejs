@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>University Lost & Found</h1>
+                <p>Help reunite students with their lost belongings</p>
+                <div class="hero-buttons">
+                    <a href="/report/lost" class="btn btn-primary">Report Lost Item</a>
+                    <a href="/report/found" class="btn btn-secondary">Report Found Item</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <form action="/search" method="GET" class="search-form">
+                    <input type="text" name="q" placeholder="Search for items..." class="search-input">
+                    <select name="category" class="search-select">
+                        <option value="All">All Categories</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Books">Books</option>
+                        <option value="ID/Cards">ID/Cards</option>
+                        <option value="Keys">Keys</option>
+                        <option value="Bags">Bags</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <select name="status" class="search-select">
+                        <option value="all">All Items</option>
+                        <option value="lost">Lost</option>
+                        <option value="found">Found</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Recently Lost Items -->
+        <section class="items-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recently Lost Items</h2>
+                    <a href="/lost" class="view-all">View All →</a>
+                </div>
+                <div class="items-grid">
+                    <% if (lostItems.length === 0) { %>
+                        <p class="no-items">No lost items reported yet.</p>
+                    <% } else { %>
+                        <% lostItems.forEach(item => { %>
+                            <div class="item-card">
+                                <div class="item-image" style="background-image: url('<%= item.imageUrl %>')"></div>
+                                <div class="item-content">
+                                    <span class="item-badge lost">Lost</span>
+                                    <h3><%= item.title %></h3>
+                                    <p class="item-category"><%= item.category %></p>
+                                    <p class="item-location">📍 <%= item.location %></p>
+                                    <p class="item-date"><%= new Date(item.date).toLocaleDateString() %></p>
+                                    <a href="/item/<%= item._id %>" class="btn btn-small">View Details</a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recently Found Items -->
+        <section class="items-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recently Found Items</h2>
+                    <a href="/found" class="view-all">View All →</a>
+                </div>
+                <div class="items-grid">
+                    <% if (foundItems.length === 0) { %>
+                        <p class="no-items">No found items reported yet.</p>
+                    <% } else { %>
+                        <% foundItems.forEach(item => { %>
+                            <div class="item-card">
+                                <div class="item-image" style="background-image: url('<%= item.imageUrl %>')"></div>
+                                <div class="item-content">
+                                    <span class="item-badge found">Found</span>
+                                    <h3><%= item.title %></h3>
+                                    <p class="item-category"><%= item.category %></p>
+                                    <p class="item-location">📍 <%= item.location %></p>
+                                    <p class="item-date"><%= new Date(item.date).toLocaleDateString() %></p>
+                                    <a href="/item/<%= item._id %>" class="btn btn-small">View Details</a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

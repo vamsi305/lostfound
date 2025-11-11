@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= item.title %> - University Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="details-section">
+            <div class="container">
+                <div class="details-card">
+                    <div class="details-header">
+                        <a href="/" class="back-link">← Back to Home</a>
+                        <span class="item-badge <%= item.status %>"><%= item.status.charAt(0).toUpperCase() + item.status.slice(1) %></span>
+                    </div>
+
+                    <div class="details-content">
+                        <div class="details-image">
+                            <img src="<%= item.imageUrl %>" alt="<%= item.title %>">
+                        </div>
+
+                        <div class="details-info">
+                            <h1><%= item.title %></h1>
+                            
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <strong>Category:</strong>
+                                    <span><%= item.category %></span>
+                                </div>
+
+                                <div class="info-item">
+                                    <strong>Date:</strong>
+                                    <span><%= new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+
+                                <div class="info-item">
+                                    <strong>Location:</strong>
+                                    <span>📍 <%= item.location %></span>
+                                </div>
+
+                                <div class="info-item">
+                                    <strong>Status:</strong>
+                                    <span><%= item.status.charAt(0).toUpperCase() + item.status.slice(1) %></span>
+                                </div>
+
+                                <div class="info-item">
+                                    <strong>Posted:</strong>
+                                    <span><%= new Date(item.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></span>
+                                </div>
+                            </div>
+
+                            <div class="description-section">
+                                <h3>Description</h3>
+                                <p><%= item.description %></p>
+                            </div>
+
+                            <div class="contact-section">
+                                <h3>Contact Information</h3>
+                                <div class="contact-info">
+                                    <p><strong>Name:</strong> <%= item.contactName %></p>
+                                    <p><strong>Email:</strong> <a href="mailto:<%= item.contactEmail %>"><%= item.contactEmail %></a></p>
+                                    <% if (item.contactPhone) { %>
+                                        <p><strong>Phone:</strong> <a href="tel:<%= item.contactPhone %>"><%= item.contactPhone %></a></p>
+                                    <% } %>
+                                </div>
+                            </div>
+
+                            <% if (!item.resolved) { %>
+                                <div class="action-buttons">
+                                    <form action="/item/<%= item._id %>/resolve" method="POST" style="display: inline;">
+                                        <button type="submit" class="btn btn-success">Mark as Resolved</button>
+                                    </form>
+                                </div>
+                            <% } else { %>
+                                <div class="resolved-badge">
+                                    ✓ This item has been resolved
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

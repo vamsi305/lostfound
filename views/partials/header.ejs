@@ -1,0 +1,31 @@
+<header class="header">
+    <nav class="navbar">
+        <div class="container">
+            <a href="/dashboard" class="logo">🎓 Lost & Found</a>
+            <ul class="nav-links">
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/lost">Lost Items</a></li>
+                <li><a href="/found">Found Items</a></li>
+                <li><a href="/my-items">My Items</a></li>
+                <% if (user && user.isAdmin) { %>
+                    <li><a href="/admin" class="btn btn-small" style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%);">🛡️ Admin Panel</a></li>
+                <% } %>
+                <li><a href="/report/lost" class="btn btn-small btn-primary">Report Lost</a></li>
+                <li><a href="/report/found" class="btn btn-small btn-secondary">Report Found</a></li>
+                <% if (user) { %>
+                    <li class="nav-divider"></li>
+                    <li class="user-menu">
+                        <% if (currentUniversity) { %>
+                            <span class="university-badge"><%= currentUniversity %></span>
+                        <% } %>
+                        <div class="user-info">
+                            <span class="user-name"><%= user.name %></span>
+                        </div>
+                    </li>
+                    <li><a href="/change-university" style="font-size: 0.875rem;">Change University</a></li>
+                    <li><a href="/logout" style="font-size: 0.875rem;">Logout</a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+</header>

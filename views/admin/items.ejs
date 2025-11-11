@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Management - Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+    <%- include('../partials/admin-header') %>
+
+    <div class="admin-container">
+        <div class="admin-content">
+            <div class="page-header">
+                <h1 class="admin-title">📦 Item Management</h1>
+                <div class="page-info">
+                    <span class="info-badge">Total Items: <%= items.length %></span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>University</th>
+                            <th>Location</th>
+                            <th>Reporter</th>
+                            <th>Contact</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% items.forEach(item => { %>
+                            <tr id="item-<%= item._id %>">
+                                <td>
+                                    <span class="badge badge-<%= item.type %>">
+                                        <%= item.type === 'lost' ? '🔍 Lost' : '✅ Found' %>
+                                    </span>
+                                </td>
+                                <td><strong><%= item.itemName %></strong></td>
+                                <td><%= item.category %></td>
+                                <td><%= item.university %></td>
+                                <td><%= item.location %></td>
+                                <td><%= item.userId ? item.userId.name : 'Unknown' %></td>
+                                <td><%= item.contactInfo %></td>
+                                <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
+                                <td class="actions-cell">
+                                    <a href="/item/<%= item._id %>" class="action-btn btn-view" target="_blank">View</a>
+                                    <button class="action-btn btn-delete" onclick="deleteItem('<%= item._id %>', '<%= item.itemName %>')">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function deleteItem(itemId, itemName) {
+            if (!confirm(`Are you sure you want to delete "${itemName}"?`)) {
+                return;
+            }
+
+            fetch(`/admin/item/${itemId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`item-${itemId}`).remove();
+                    alert('Item deleted successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to delete item');
+            });
+        }
+    </script>
+</body>
+</html>

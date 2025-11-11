@@ -1,0 +1,295 @@
+/* Authentication Page Styles */
+.auth-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.university-select-card {
+    max-width: 600px;
+}
+
+.auth-card {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.auth-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.auth-form {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.auth-form input,
+.auth-form select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.auth-form input:focus,
+.auth-form select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.btn-full {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.125rem;
+    margin-top: 0.5rem;
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.auth-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.auth-footer p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.auth-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+.university-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5rem;
+    padding-right: 3rem;
+}
+
+.university-info {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.university-info h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.university-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.university-info li {
+    padding: 0.75rem 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.university-info li:last-child {
+    border-bottom: none;
+}
+
+/* User Menu in Header */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.user-name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.university-badge {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-color);
+}
+
+/* Item Actions */
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.resolved-item {
+    opacity: 0.7;
+}
+
+.item-badge.resolved {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+/* Login Type Selector */
+.login-type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.login-type-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.login-type-btn:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-type-btn.active {
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    color: var(--primary-color);
+}
+
+.login-type-btn .type-icon {
+    font-size: 2.5rem;
+}
+
+.btn-admin {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    color: white;
+}
+
+.btn-admin:hover {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+.auth-hint {
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Responsive Design for Auth Pages */
+@media (max-width: 768px) {
+    .auth-page {
+        padding: 1rem;
+    }
+
+    .auth-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .auth-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .university-info {
+        padding: 1.5rem;
+    }
+
+    .login-type-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .login-type-btn {
+        padding: 1.25rem 1rem;
+    }
+
+    .login-type-btn .type-icon {
+        font-size: 2rem;
+    }
+}

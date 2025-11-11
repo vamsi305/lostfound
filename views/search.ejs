@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - University Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Search Results</h1>
+                <% if (query) { %>
+                    <p>Showing results for "<%= query %>"</p>
+                <% } else { %>
+                    <p>Browse filtered items</p>
+                <% } %>
+            </div>
+        </section>
+
+        <!-- Search Form -->
+        <section class="search-section">
+            <div class="container">
+                <form action="/search" method="GET" class="search-form">
+                    <input type="text" name="q" placeholder="Search for items..." class="search-input" value="<%= query %>">
+                    <select name="category" class="search-select">
+                        <option value="All" <%= category === 'All' ? 'selected' : '' %>>All Categories</option>
+                        <option value="Electronics" <%= category === 'Electronics' ? 'selected' : '' %>>Electronics</option>
+                        <option value="Clothing" <%= category === 'Clothing' ? 'selected' : '' %>>Clothing</option>
+                        <option value="Books" <%= category === 'Books' ? 'selected' : '' %>>Books</option>
+                        <option value="ID/Cards" <%= category === 'ID/Cards' ? 'selected' : '' %>>ID/Cards</option>
+                        <option value="Keys" <%= category === 'Keys' ? 'selected' : '' %>>Keys</option>
+                        <option value="Bags" <%= category === 'Bags' ? 'selected' : '' %>>Bags</option>
+                        <option value="Accessories" <%= category === 'Accessories' ? 'selected' : '' %>>Accessories</option>
+                        <option value="Other" <%= category === 'Other' ? 'selected' : '' %>>Other</option>
+                    </select>
+                    <select name="status" class="search-select">
+                        <option value="all" <%= status === 'all' ? 'selected' : '' %>>All Items</option>
+                        <option value="lost" <%= status === 'lost' ? 'selected' : '' %>>Lost</option>
+                        <option value="found" <%= status === 'found' ? 'selected' : '' %>>Found</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="items-section">
+            <div class="container">
+                <% if (items.length === 0) { %>
+                    <div class="no-items-message">
+                        <h2>No items found</h2>
+                        <p>Try adjusting your search criteria or browse all items</p>
+                        <div class="hero-buttons">
+                            <a href="/lost" class="btn btn-primary">Browse Lost Items</a>
+                            <a href="/found" class="btn btn-secondary">Browse Found Items</a>
+                        </div>
+                    </div>
+                <% } else { %>
+                    <div class="items-count">
+                        <p>Found <%= items.length %> item<%= items.length !== 1 ? 's' : '' %></p>
+                    </div>
+                    <div class="items-grid">
+                        <% items.forEach(item => { %>
+                            <div class="item-card">
+                                <div class="item-image" style="background-image: url('<%= item.imageUrl %>')"></div>
+                                <div class="item-content">
+                                    <span class="item-badge <%= item.status %>"><%= item.status.charAt(0).toUpperCase() + item.status.slice(1) %></span>
+                                    <h3><%= item.title %></h3>
+                                    <p class="item-category"><%= item.category %></p>
+                                    <p class="item-description"><%= item.description.substring(0, 100) %><%= item.description.length > 100 ? '...' : '' %></p>
+                                    <p class="item-location">📍 <%= item.location %></p>
+                                    <p class="item-date">📅 <%= new Date(item.date).toLocaleDateString() %></p>
+                                    <a href="/item/<%= item._id %>" class="btn btn-small">View Details</a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

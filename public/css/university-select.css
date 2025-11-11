@@ -1,0 +1,486 @@
+/* University Selection Page Styles */
+.university-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.university-selection-container {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.university-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.university-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.university-header p {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    font-weight: 400;
+}
+
+.logout-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.logout-link a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.logout-link a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* University Form */
+.university-form {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.75rem;
+}
+
+.university-select {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: #f8fafc;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px;
+    padding-right: 3rem;
+}
+
+.university-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.university-select option {
+    padding: 0.75rem;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.error-message {
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    border-left: 4px solid #dc2626;
+}
+
+/* Search Container */
+.search-container {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.university-search-input {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    font-size: 1.125rem;
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    transition: all 0.3s;
+    background: #f8fafc;
+}
+
+.university-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.search-stats {
+    margin-top: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Universities Grid */
+.universities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.university-card {
+    background: white;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.university-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.university-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+}
+
+.university-card:hover::before {
+    opacity: 1;
+}
+
+/* University Image Section */
+.university-image {
+    width: 100%;
+    height: 180px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #f8fafc;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+.university-card:hover .image-overlay {
+    background: linear-gradient(to bottom, transparent 0%, rgba(37, 99, 235, 0.05) 100%);
+}
+
+/* University Content Section */
+.university-content {
+    padding: 1.5rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.university-card.selected {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    transform: scale(1.05);
+}
+
+.university-card.selected::before {
+    background: var(--success-color);
+    opacity: 1;
+    height: 8px;
+}
+
+.university-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.university-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    min-height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.select-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.select-btn:active {
+    transform: scale(0.98);
+}
+
+.university-card.selected .select-btn {
+    background: var(--success-color);
+}
+
+/* No Results */
+.no-results {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.no-results h3 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.no-results p {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+}
+
+/* Info Banner */
+.university-info-banner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    transition: transform 0.3s;
+}
+
+.info-item:hover {
+    transform: translateY(-4px);
+}
+
+.info-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.info-item span:last-child {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .universities-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .university-page {
+        padding: 1rem;
+    }
+
+    .university-header h1 {
+        font-size: 2rem;
+    }
+
+    .university-header p {
+        font-size: 1rem;
+    }
+
+    .logout-link {
+        position: static;
+        margin-top: 1rem;
+    }
+
+    .search-container {
+        padding: 1.5rem;
+    }
+
+    .university-search-input {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+
+    .universities-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .university-card {
+        padding: 0;
+    }
+
+    .university-image {
+        height: 150px;
+    }
+
+    .university-content {
+        padding: 1rem;
+    }
+
+    .university-icon {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .university-name {
+        font-size: 0.95rem;
+        min-height: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .university-info-banner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .info-item {
+        padding: 0.75rem;
+    }
+
+    .info-icon {
+        font-size: 1.5rem;
+    }
+
+    .info-item span:last-child {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .university-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .university-search-input {
+        font-size: 0.9rem;
+    }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.university-card.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}

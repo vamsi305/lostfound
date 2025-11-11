@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+    <%- include('../partials/admin-header') %>
+
+    <div class="admin-container">
+        <div class="admin-content">
+            <h1 class="admin-title">📊 Admin Dashboard</h1>
+            
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card stat-users">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3><%= totalUsers %></h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-items">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3><%= totalItems %></h3>
+                        <p>Total Items</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-lost">
+                    <div class="stat-icon">🔍</div>
+                    <div class="stat-info">
+                        <h3><%= lostItems %></h3>
+                        <p>Lost Items</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card stat-found">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3><%= foundItems %></h3>
+                        <p>Found Items</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-sections">
+                <!-- Recent Items -->
+                <div class="dashboard-section">
+                    <h2 class="section-title">Recent Items</h2>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Item</th>
+                                    <th>University</th>
+                                    <th>Reporter</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% recentItems.forEach(item => { %>
+                                    <tr>
+                                        <td>
+                                            <span class="badge badge-<%= item.type %>">
+                                                <%= item.type === 'lost' ? '🔍 Lost' : '✅ Found' %>
+                                            </span>
+                                        </td>
+                                        <td><strong><%= item.itemName %></strong></td>
+                                        <td><%= item.university %></td>
+                                        <td><%= item.userId ? item.userId.name : 'Unknown' %></td>
+                                        <td><%= new Date(item.createdAt).toLocaleDateString() %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/admin/items" class="view-all-btn">View All Items →</a>
+                </div>
+
+                <!-- Recent Users -->
+                <div class="dashboard-section">
+                    <h2 class="section-title">Recent Users</h2>
+                    <div class="table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>University</th>
+                                    <th>Admin</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% recentUsers.forEach(user => { %>
+                                    <tr>
+                                        <td><strong><%= user.name %></strong></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.university %></td>
+                                        <td>
+                                            <% if (user.isAdmin) { %>
+                                                <span class="badge badge-admin">Admin</span>
+                                            <% } else { %>
+                                                <span class="badge badge-user">User</span>
+                                            <% } %>
+                                        </td>
+                                        <td><%= new Date(user.createdAt).toLocaleDateString() %></td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="/admin/users" class="view-all-btn">View All Users →</a>
+                </div>
+
+                <!-- Top Universities -->
+                <div class="dashboard-section">
+                    <h2 class="section-title">Top Universities by Items</h2>
+                    <div class="university-stats">
+                        <% itemsByUniversity.forEach((uni, index) => { %>
+                            <div class="university-stat-item">
+                                <span class="rank">#<%= index + 1 %></span>
+                                <span class="uni-name"><%= uni._id %></span>
+                                <span class="uni-count"><%= uni.count %> items</span>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

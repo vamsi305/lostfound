@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report <%= type.charAt(0).toUpperCase() + type.slice(1) %> Item - University Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Report <%= type.charAt(0).toUpperCase() + type.slice(1) %> Item</h1>
+                <p>Fill out the form below to report a <%= type %> item</p>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="container">
+                <form action="/report" method="POST" class="report-form" enctype="multipart/form-data">
+                    <input type="hidden" name="status" value="<%= type %>">
+                    
+                    <div class="form-group">
+                        <label for="title">Item Title *</label>
+                        <input type="text" id="title" name="title" required placeholder="e.g., Blue Backpack, iPhone 13, Student ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description *</label>
+                        <textarea id="description" name="description" required rows="5" placeholder="Provide detailed description (color, brand, distinctive features, etc.)"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select a category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Clothing">Clothing</option>
+                                <option value="Books">Books</option>
+                                <option value="ID/Cards">ID/Cards</option>
+                                <option value="Keys">Keys</option>
+                                <option value="Bags">Bags</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date">Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" name="location" required placeholder="e.g., Library 2nd Floor, Main Hall, Cafeteria">
+                    </div>
+
+                    <div class="form-divider">
+                        <h3>Item Image</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Upload Image (optional)</label>
+                        <input type="file" id="image" name="image" accept="image/jpeg,image/jpg,image/png,image/gif">
+                        <small>Upload a photo of the item from your device (Max 5MB, formats: JPG, PNG, GIF)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUrl">Or provide Image URL (optional)</label>
+                        <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+                        <small>Alternatively, paste a link to an image of the item</small>
+                    </div>
+
+                    <div class="form-divider">
+                        <h3>Contact Information</h3>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactName">Your Name *</label>
+                        <input type="text" id="contactName" name="contactName" required placeholder="Full name">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactEmail">Email *</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required placeholder="your.email@university.edu">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Phone (optional)</label>
+                            <input type="tel" id="contactPhone" name="contactPhone" placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Submit Report</button>
+                        <a href="/" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+</body>
+</html>

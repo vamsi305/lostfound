@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - University Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>🎓 University Lost & Found</h1>
+                <p>Choose your login type</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <!-- Login Type Selection -->
+            <div class="login-type-selector">
+                <button type="button" class="login-type-btn active" onclick="showLogin('student')" id="studentBtn">
+                    <span class="type-icon">👨‍🎓</span>
+                    <span>Student Login</span>
+                </button>
+                <button type="button" class="login-type-btn" onclick="showLogin('admin')" id="adminBtn">
+                    <span class="type-icon">🛡️</span>
+                    <span>Admin Login</span>
+                </button>
+            </div>
+
+            <!-- Student Login Form -->
+            <form action="/login" method="POST" class="auth-form" id="studentForm">
+                <input type="hidden" name="loginType" value="student">
+                
+                <div class="form-group">
+                    <label for="student-email">Student Email</label>
+                    <input type="email" id="student-email" name="email" required placeholder="your.email@university.edu">
+                </div>
+
+                <div class="form-group">
+                    <label for="student-password">Password</label>
+                    <input type="password" id="student-password" name="password" required placeholder="Enter your password" minlength="6">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Login as Student</button>
+            </form>
+
+            <!-- Admin Login Form -->
+            <form action="/login" method="POST" class="auth-form" id="adminForm" style="display: none;">
+                <input type="hidden" name="loginType" value="admin">
+                
+                <div class="form-group">
+                    <label for="admin-email">Admin Email</label>
+                    <input type="email" id="admin-email" name="email" required placeholder="admin@university.edu">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" name="password" required placeholder="Enter admin password" minlength="6">
+                </div>
+
+                <button type="submit" class="btn btn-admin btn-full">Login as Admin</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="/register">Register here</a></p>
+            </div>
+
+            <div class="auth-hint" id="adminHint" style="display: none; margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 8px; font-size: 0.875rem;">
+                <strong>🔑 Admin Credentials:</strong><br>
+                Email: admin@university.edu<br>
+                Password: admin123
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showLogin(type) {
+            const studentForm = document.getElementById('studentForm');
+            const adminForm = document.getElementById('adminForm');
+            const studentBtn = document.getElementById('studentBtn');
+            const adminBtn = document.getElementById('adminBtn');
+            const adminHint = document.getElementById('adminHint');
+
+            if (type === 'student') {
+                studentForm.style.display = 'block';
+                adminForm.style.display = 'none';
+                studentBtn.classList.add('active');
+                adminBtn.classList.remove('active');
+                adminHint.style.display = 'none';
+            } else {
+                studentForm.style.display = 'none';
+                adminForm.style.display = 'block';
+                studentBtn.classList.remove('active');
+                adminBtn.classList.add('active');
+                adminHint.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

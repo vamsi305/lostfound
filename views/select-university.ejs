@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select University - Lost & Found</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/university-select.css">
+</head>
+<body class="university-page">
+    <div class="university-selection-container">
+        <div class="university-header">
+            <h1>🎓 Select Your University</h1>
+            <p>Choose your university to access campus-specific lost and found items</p>
+            <div class="logout-link">
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+
+        <!-- University Selection Form -->
+        <form action="/select-university" method="POST" class="university-form">
+            <div class="form-group">
+                <label for="university">Select Your University</label>
+                <select name="university" id="university" required class="university-select">
+                    <option value="">-- Choose a University --</option>
+                    <% universities.forEach(uni => { %>
+                        <option value="<%= uni %>"><%= uni %></option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <% if (locals.error) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <button type="submit" class="submit-btn">Continue</button>
+        </form>
+
+    </div>
+
+    <script>
+        // Auto-focus on select dropdown
+        window.addEventListener('load', function() {
+            document.getElementById('university').focus();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management - Admin</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+    <%- include('../partials/admin-header') %>
+
+    <div class="admin-container">
+        <div class="admin-content">
+            <div class="page-header">
+                <h1 class="admin-title">👥 User Management</h1>
+                <div class="page-info">
+                    <span class="info-badge">Total Users: <%= users.length %></span>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>University</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                            <tr id="user-<%= user._id %>">
+                                <td><strong><%= user.name %></strong></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.university %></td>
+                                <td><%= user.phone || 'N/A' %></td>
+                                <td>
+                                    <% if (user.isAdmin) { %>
+                                        <span class="badge badge-admin">👑 Admin</span>
+                                    <% } else { %>
+                                        <span class="badge badge-user">User</span>
+                                    <% } %>
+                                </td>
+                                <td><%= new Date(user.createdAt).toLocaleDateString() %></td>
+                                <td class="actions-cell">
+                                    <button class="action-btn btn-admin" onclick="toggleAdmin('<%= user._id %>', <%= user.isAdmin %>)">
+                                        <% if (user.isAdmin) { %>
+                                            Remove Admin
+                                        <% } else { %>
+                                            Make Admin
+                                        <% } %>
+                                    </button>
+                                    <button class="action-btn btn-delete" onclick="deleteUser('<%= user._id %>', '<%= user.name %>')">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAdmin(userId, isCurrentlyAdmin) {
+            if (!confirm(`Are you sure you want to ${isCurrentlyAdmin ? 'remove admin privileges from' : 'make'} this user ${isCurrentlyAdmin ? '' : 'an admin'}?`)) {
+                return;
+            }
+
+            fetch(`/admin/user/${userId}/toggle-admin`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('User status updated successfully!');
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update user status');
+            });
+        }
+
+        function deleteUser(userId, userName) {
+            if (!confirm(`Are you sure you want to delete user "${userName}"? This will also delete all their items.`)) {
+                return;
+            }
+
+            fetch(`/admin/user/${userId}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById(`user-${userId}`).remove();
+                    alert('User deleted successfully!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to delete user');
+            });
+        }
+    </script>
+</body>
+</html>

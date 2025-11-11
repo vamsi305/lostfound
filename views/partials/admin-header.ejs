@@ -1,0 +1,33 @@
+<nav class="admin-navbar">
+    <div class="admin-nav-container">
+        <div class="admin-logo">
+            <a href="/admin">🛡️ Admin Panel</a>
+        </div>
+        
+        <div class="admin-nav-links">
+            <a href="/admin" class="nav-link">
+                <span class="nav-icon">📊</span>
+                Dashboard
+            </a>
+            <a href="/admin/users" class="nav-link">
+                <span class="nav-icon">👥</span>
+                Users
+            </a>
+            <a href="/admin/items" class="nav-link">
+                <span class="nav-icon">📦</span>
+                Items
+            </a>
+            <a href="/dashboard" class="nav-link">
+                <span class="nav-icon">🏠</span>
+                Main Site
+            </a>
+        </div>
+        
+        <div class="admin-user-info">
+            <span class="admin-username">
+                👑 <%= user.name %>
+            </span>
+            <a href="/logout" class="admin-logout">Logout</a>
+        </div>
+    </div>
+</nav>
